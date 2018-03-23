@@ -48,6 +48,30 @@ ewz_recaptcha:
 
 **NOTE**: This Bundle lets the client browser choose the secure https or unsecure http API.
 
+#### Configure the bundle's for Symfony 4
+``` 
+# Create config file in app/config/packages/ewz_recaptcha.yaml
+
+ewz_recaptcha:
+    public_key:  here_is_your_public_key
+    private_key: here_is_your_private_key
+    # Not needed as "%kernel.default_locale%" is the default value for the locale key
+    locale_key:  %kernel.default_locale%
+     
+     
+# Install templating module with command 'composer require symfony/templating'
+
+# Add templating params in app/config/packages/framework.yaml
+
+ templating:
+        engines: ['twig', 'php']
+        
+        
+# Fix form theme path   
+    {% form_theme form '@EWZRecaptcha/Form/ewz_recaptcha_widget.html.twig' %}   
+
+```
+
 If you want to use the language default for the reCAPTCHA the same as the
 request locale you must activate the resolver (deactivated by default):
 
@@ -103,6 +127,10 @@ ewz_recaptcha:
 ```
 
 Congratulations! You're ready!
+
+
+
+
 
 ## Basic Usage
 
